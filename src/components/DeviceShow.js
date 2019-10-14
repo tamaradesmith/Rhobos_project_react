@@ -1,6 +1,6 @@
 import React from "react";
 import { Device } from "../js/requests"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import SensorDetail from "./SensorDetail";
 import ControllerDetail from "./ControllerDetail"
 import '../styles/device.css'
@@ -41,7 +41,7 @@ class DeviceShow extends React.Component {
           isLoading: false,
         });
       }
-    )
+    );
   };
   render() {
     if (!this.state.device || !this.state.controllers || !this.state.sensors) {
@@ -60,14 +60,14 @@ class DeviceShow extends React.Component {
           {this.state.sensors.map((sensor, index) => (
             <div key={sensor.id}>
               <SensorDetail type={sensor.type}
-                 even = { this.even(index)} />
+                even={this.even(index)} />
             </div>
 
           ))}
         </div>
         <h4 className="title"> Controllers</h4>
         {this.state.controllers.map(
-         ( controller, index) => (
+          (controller, index) => (
             <div key={controller.id}>
               <ControllerDetail type={controller.type} even={this.even(index)} />
             </div>

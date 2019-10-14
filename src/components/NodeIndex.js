@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DeviceDetail from "./DeviceDetail";
-import DeviceShow from "./DeviceShow";
+// import DeviceDetail from "./DeviceDetail";
+// import DeviceShow from "./DeviceShow";
 import { Device, Node } from "../js/requests"
 import '../styles/node.css'
 
