@@ -1,0 +1,6 @@
+.device-card{
+  display: flex;
+  flex-direction: column;
+  /* border-top: 10px double rgb(9, 46, 10); */
+  margin: 1em 0em;
+}

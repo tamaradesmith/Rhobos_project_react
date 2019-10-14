@@ -1,0 +1,12 @@
+.node-card{
+  border: 10px double rgb(9, 46, 10);
+  background: rgba(9, 46, 10, 0.671);
+  display: flex;
+  flex-direction: column;
+  padding: .5em .75em;
+  margin: 1em 0;
+}
+.node-header{
+  text-align: center;
+  text-decoration-line: underline;
+}
