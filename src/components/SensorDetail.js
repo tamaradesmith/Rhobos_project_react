@@ -1,19 +1,34 @@
 import React from "react"
-import '../styles/sensor.scss'
+import '../styles/details.scss'
 
-function  SensorDetail(props){
+function SensorDetail(props) {
 
   return (
-  <main className="SensorDetail">
+    <main className="SensorDetail">
 
-   <div className="grid"> 
-   Type: {props.type}
-   
-   </div>
-{/* <p>Hi there</p> */}
-  </main>
-  )
-}
+      {   props.even === true ?(
+        <div className="grid row">
+        <p>
+              Type:
+        </p>
+            <p >
+              {props.type}
+            </p>
+          </div>
+          ) :(
+      <div className="grid ">
+        <p>
+          Type:
+        </p>
+        <p >
+          {props.type}
+        </p>
+      </div>
+            )}
+
+    </main>
+      )
+      }
 
 
-export default SensorDetail
+      export default SensorDetail

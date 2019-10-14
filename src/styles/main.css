@@ -4,7 +4,6 @@ html {
   box-sizing: border-box;
   height: 100%;
 }
-
 *,
 *:before,
 *:after {
@@ -20,7 +19,7 @@ body {
   /* background-image: url("../images/abstract-grey-textured.jpg"); */
   /* background-image: url("../images/scott-webb-qauaqihMwpc-unsplash.jpg"); */
 
-  background-size:100% 100%;
+  background-size: 100% 100%;
   font-size: 1.5em;
   padding: 0.5em 0.5em;
 }
@@ -28,35 +27,38 @@ h1 {
   text-align: center;
   padding: 1em;
 }
-h2{
+h2 {
   font-size: 1.5em;
   font-weight: 600;
 }
-h3{
+h3 {
   font-size: 1.25em;
   font-weight: 500;
 }
-.NavBar{
+h4 {
+  font-size: 1.1em;
+  font-weight: 400;
+}
+.NavBar {
   display: flex;
   flex-direction: row;
   min-height: 75px;
   background: rgba(9, 46, 10, 0.671);
   border: 10px double rgb(9, 46, 10);
 }
-.nav-icon{
+.nav-icon {
   flex: 1;
 }
-.nav-menu{
+.nav-menu {
   display: flex;
   flex-direction: row;
-  
 }
-.card{
+.card {
   border: 10px double rgb(9, 46, 10);
   background: rgba(9, 46, 10, 0.671);
   display: flex;
   flex-direction: column;
-  padding: .5em .75em;
+  padding: 0.5em 0.75em;
   margin: 1em 0;
 }
 
