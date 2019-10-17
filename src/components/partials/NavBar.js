@@ -1,12 +1,13 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
-
+import td3dicon from "../../images/td3dicon.png"
 
 function NavBar(props) {
   return (
     <main className="NavBar" >
       <figure className="nav-icon">
-        <img src="../images/td3dicon.png" alt="TD3D Icon" />
+        <img src={td3dicon} alt="TD3D Icon" className="nav-icon" />
+
       </figure>
       <div className="nav-menu">
         <NavLink to="/"> Nodes </NavLink>

@@ -7,8 +7,7 @@ function DeviceDetail(props) {
   return (
     <main className="DeviceDetail device-card">
       <h3> Device:  {device.name}</h3>
-
-
+      <p> {device.description}</p>
     </main>
   )
 }

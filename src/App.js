@@ -5,7 +5,7 @@ import './App.css';
 import NodeIndex from "./components/NodeIndex"
 import NavBar from './components/partials/NavBar';
 import DeviceShow from './components/DeviceShow';
-import DashBoard from './components/DashBoard';
+import DashBoard from './components/Dashboard';
 
 
 function App() {

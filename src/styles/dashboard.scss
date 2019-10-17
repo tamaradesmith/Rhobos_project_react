@@ -1,0 +1,22 @@
+.grid-dashboard {
+  display: grid;
+  grid-template-columns: 125px 250px 250px 250px auto;
+  grid-template-rows: 100px 100px 100px 100px 100px;
+ 
+  grid-gap: 15px;
+}
+.chart-div {
+  grid-column: 2/6;
+  grid-row: 1/6;
+  background: rgba(255, 255, 255, 0.3);
+}
+.reading-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 10px double rgb(9, 46, 10);
+  background: rebeccapurple;
+  height: 100%;
+  width: 100%;
+}

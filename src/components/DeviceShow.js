@@ -48,28 +48,30 @@ class DeviceShow extends React.Component {
       return <p> loading</p>
     }
 
+    const { device, sensors, controllers } = this.state;
     return (
       <main className="DeviceDetail card">
 
-        <h2>Device: {this.state.device.name}</h2>
-        <Link to={`/device/${this.state.device.id}/dashboard`} > Dashbord</Link>
+        <h2>Device: {device.name}</h2>
+        <Link to={`/device/${device.id}/dashboard`} > Dashboard</Link>
         <div >
           <h4 className="title">
             Sensors:
             </h4>
-          {this.state.sensors.map((sensor, index) => (
+          {sensors.map((sensor, index) => (
             <div key={sensor.id}>
-              <SensorDetail type={sensor.type}
-                even={this.even(index)} />
+              <SensorDetail sensor={sensor}
+                even={this.even(index)}  />
             </div>
 
           ))}
         </div>
         <h4 className="title"> Controllers</h4>
-        {this.state.controllers.map(
+        {controllers.map(
           (controller, index) => (
             <div key={controller.id}>
-              <ControllerDetail type={controller.type} even={this.even(index)} />
+            {console.log(controller)}
+              <ControllerDetail controller={controller} even={this.even(index)} />
             </div>
           )
         )}

@@ -49,6 +49,7 @@ h4 {
 }
 .nav-icon {
   flex: 1;
+  max-height: 75px;
 }
 .nav-menu {
   display: flex;
@@ -71,14 +72,14 @@ h4 {
   grid-gap: 0.5rem 0.1rem;
   justify-content: stretch;
 }
-.chart {
-  background: rgba(255, 255, 255, 0.6);
-  max-width: 100%;
+/* .chart { */
+  /* background: rgba(255, 255, 255, 0.6);
+  max-width: 100%; */
   /* flex: 1;
   grid-column: 1/8;
   grid-row: 1/3;
   justify-content: stretch; */
-}
+/* } */
 .box-grid {
   display: flex;
   flex-direction: row;

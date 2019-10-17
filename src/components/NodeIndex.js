@@ -47,12 +47,13 @@ class NodeIndex extends React.Component {
               <div>
 
                 {this.state.devices.map((device, index) => (
-                  <div key={index}>
+                  <div key={index} className="grid-device">
                     <Link to={`/devices/${device.id}`}  >
                     <p>
                     {device.name}
                     </p> 
                   </Link>
+                      <p> {device.description} </p>
                   </div>
                 ))}
               </div>

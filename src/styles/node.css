@@ -10,3 +10,7 @@
   text-align: center;
   text-decoration-line: underline;
 }
+.grid-device{
+  display: grid;
+   grid-template-columns: 150px auto;
+}
