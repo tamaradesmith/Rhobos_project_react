@@ -16,9 +16,6 @@ class DashBoard extends React.Component {
   }
 
 
-
-
-
   componentDidMount() {
 
     Device.getSensors(this.props.match.params.id).then(
@@ -28,7 +25,6 @@ class DashBoard extends React.Component {
           isLoading: false,
         });
       })
-
 
     // Sensor.getReadings(this.props.match.params.id)
     //   .then(
@@ -58,30 +54,38 @@ class DashBoard extends React.Component {
           })
         })
     Device.getControllers(this.props.match.params.id)
-    .then(
-      controllers =>{
-        this.setState({
-          controllers: [...controllers],
-          isLoading: false,
-        })
-      }
-    )
+      .then(
+        controllers => {
+          this.setState({
+            controllers: [...controllers],
+            isLoading: false,
+          })
+        }
+      )
   };
 
-  
+
   render() {
     const { sensors, lastReading, controllers } = this.state;
-    if (!this.state.sensors || !this.state.readings || !this.state.lastReading) {
+
+    if (!sensors || !this.state.readings || !lastReading || !controllers) {
       return <p> loading</p>
     }
     return (
       <main className="grid-dashboard card">
-        <div>
-          <ReadingDetail reading={lastReading} sensor={sensors[0]} />
-        </div>
-        <div>
-          <Button onToggle={() => Controller.toggleBoolean(2)} controller={controllers[1]} />
-        </div>
+    
+
+          <ReadingDetail reading={lastReading} sensor={sensors[0]} getCurrentReading={() => {
+            Sensor.getCurrentReading(7)
+          }} />
+ 
+        {controllers.map(controller => (
+          <div key={Controller.id}>
+            <Button onToggle={() => Controller.toggleBoolean(controller.id)} controller={controller} />
+          </div>
+        ))}
+
+
         <div className="chart-div">
           <Chart reading={this.state.readings} sensorId={sensors[0]} />
         </div>

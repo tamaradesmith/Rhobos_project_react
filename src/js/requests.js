@@ -45,6 +45,10 @@ const Sensor = {
     const res = await fetch(`${BASE_URL}/sensor/${sensor_id}/reading`, {});
     return res.json();
   },
+  async getCurrentReading(sensor_id) {
+    const res = await fetch(`${BASE_URL}/sensor/${sensor_id}/current`)
+    return res.json();
+  },
 }
 
 const Controller = {
