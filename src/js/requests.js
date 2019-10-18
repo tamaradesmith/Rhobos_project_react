@@ -49,6 +49,7 @@ const Sensor = {
     const res = await fetch(`${BASE_URL}/sensor/${sensor_id}/current`)
     return res.json();
   },
+
 }
 
 const Controller = {

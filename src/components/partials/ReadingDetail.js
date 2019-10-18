@@ -7,17 +7,20 @@ function ReadingDetail(props) {
   const { reading } = props;
   const { sensor } = props;
 
+  const handleButtonClick =() => {
+    props.getCurrentReading()
+  }
+
   if (!sensor) {
     return ""
   }
 
   return (
 
-    <main className="reading-div" onClick={props.getCurrentReading}>
-
+    <button className="reading-div" onClick={handleButtonClick}>
       <p>{sensor.name} </p>
       <p>{reading.value}</p>
-    </main>
+    </button>
   )
 }
 export default ReadingDetail

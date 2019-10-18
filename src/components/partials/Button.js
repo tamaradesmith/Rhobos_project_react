@@ -3,15 +3,22 @@ import React from "react";
 
 function Button(props) {
   const { controller } = props;
+  const [state, setState] = React.useState("on")
+
+  const handleButtonClick = () => {
+    setState(s => s === 'on' ? 'off' : "on")
+    props.onToggle();
+  }
   if (!controller) {
     return ""
   }
   return (
-    <main className="reading-div">
-      <p onClick={props.onToggle} >
+    <button className="reading-div" onClick={handleButtonClick}>
+      <p>
         {controller.name}
       </p>
-    </main>
+      <p>{state}</p>
+    </button>
   )
 }
 export default Button
