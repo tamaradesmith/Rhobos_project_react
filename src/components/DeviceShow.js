@@ -3,7 +3,7 @@ import { Device } from "../js/requests"
 import { Link } from 'react-router-dom'
 import SensorDetail from "./SensorDetail";
 import ControllerDetail from "./ControllerDetail"
-import '../styles/device.css'
+import '../styles/device.scss'
 
 class DeviceShow extends React.Component {
   state = {
@@ -49,32 +49,59 @@ class DeviceShow extends React.Component {
     }
 
     const { device, sensors, controllers } = this.state;
+
     return (
       <main className="DeviceDetail card">
 
-        <h2>Device: {device.name}</h2>
+        <h2>Device: {device.name} </h2>
         <Link to={`/device/${device.id}/dashboard`} > Dashboard</Link>
-        <div >
-          <h4 className="title">
-            Sensors:
+        <h4 className="title">
+          Sensors:
             </h4>
-          {sensors.map((sensor, index) => (
-            <div key={sensor.id}>
-              <SensorDetail sensor={sensor}
-                even={this.even(index)}  />
-            </div>
+        <table className="device-table">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Min Value</th>
+              <th>Max Value</th>
+              <th>Unit</th>
+              {/* <th>Value</th> */}
+            </tr>
 
-          ))}
-        </div>
+
+            {sensors.map((sensor, index) => (
+              <>
+                <SensorDetail sensor={sensor}
+                  even={this.even(index)} />
+              </>
+
+            ))}
+
+          </tbody>
+        </table>
+
+
+
         <h4 className="title"> Controllers</h4>
+
+        <table className="device-table">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              {/* <th>Value</th> */}
+            </tr>
+
         {controllers.map(
           (controller, index) => (
-            <div key={controller.id}>
-            {console.log(controller)}
+            <>
               <ControllerDetail controller={controller} even={this.even(index)} />
-            </div>
+            </>
           )
         )}
+          </tbody>
+        </table>
 
       </main>
     )

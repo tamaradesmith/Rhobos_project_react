@@ -16,10 +16,13 @@ const Device = {
     return res.json();
   },
   async getControllers(device_id) {
-
     const res = await fetch(`${BASE_URL}/devices/${device_id}/controllers`, {});
     return res.json();
   },
+  async getControllersState(device_id){
+    const res = await fetch(`${BASE_URL}/devices/${device_id}/controllers/state`, {});
+    return res.json();
+  }
 }
 
 const Node = {

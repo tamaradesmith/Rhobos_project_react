@@ -4,24 +4,14 @@ import '../styles/details.scss'
 function SensorDetail(props) {
   const { sensor } = props;
   return (
-    <main className="SensorDetail">
-      {props.even === true ? (
-        <div className="grid row">
-          <p> name: {sensor.name}</p>
-          <p> type: {sensor.type}</p>
-          <p> min value: {sensor.minValue}</p>
-          <p> max value: {sensor.maxValue}</p>
-        </div>
-      ) : (
-          <div className="grid ">
-            <p> name: {sensor.name}</p>
-            <p> type: {sensor.type}</p>
-            <p> min value: {sensor.minValue}</p>
-            <p> max value: {sensor.maxValue}</p>
-          </div>
-        )}
-
-    </main>
+    <tr className="SensorDetail" key={sensor.id}>
+          <td> {sensor.name}</td>
+          <td>  {sensor.type}</td>
+          <td> {sensor.minValue}</td>
+          <td> {sensor.maxValue}</td>
+      <td> {sensor.unit}</td>
+      {/* <td> {sensor.maxValue}</td> */}
+    </tr>
   )
 }
 

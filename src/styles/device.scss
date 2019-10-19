@@ -1,0 +1,23 @@
+.device-card{
+  display: flex;
+  flex-direction: column;
+  /* border-top: 10px double rgb(9, 46, 10); */
+  margin: 1em 0em;
+}
+.device-table{
+  padding: 1em;
+}
+.device-table th,
+.device-table td {
+  padding: 0.25em 0.5em;
+  text-align: left;
+}
+.device-table tr:nth-child(odd) {
+    background: rgba(9, 46, 10, 0.671);
+}
+.device-table th {
+  font-size: 1.2em;
+  font-weight: 500;
+  background: rgba(9, 46, 10, 0.8);;
+  color: ghostwhite;
+}

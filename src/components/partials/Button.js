@@ -1,12 +1,14 @@
 import React from "react";
-
+import { Controller } from "../../js/requests"
 
 function Button(props) {
   const { controller } = props;
-  const [state, setState] = React.useState("on")
+  let buttonState = controller.value > 0 ? "On" : "Off"
+  const [state, setState] = React.useState(buttonState)
 
+  console.log(buttonState)
   const handleButtonClick = () => {
-    setState(s => s === 'on' ? 'off' : "on")
+    setState(buttonState => buttonState === 'On' ? '0ff' : "On")
     props.onToggle();
   }
   if (!controller) {
@@ -17,6 +19,7 @@ function Button(props) {
       <p>
         {controller.name}
       </p>
+      {/* <p>{buttonState}</p> */}
       <p>{state}</p>
     </button>
   )

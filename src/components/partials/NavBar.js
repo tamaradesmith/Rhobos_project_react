@@ -5,10 +5,15 @@ import td3dicon from "../../images/td3dicon.png"
 function NavBar(props) {
   return (
     <main className="NavBar" >
-      <figure className="nav-icon">
-        <img src={td3dicon} alt="TD3D Icon" className="nav-icon" />
+      <div className="nav-label">
 
-      </figure>
+        <figure className="nav-icon" >
+          <img src={td3dicon} alt="TD3D Icon" className="nav-icon" />
+        </figure>
+        <p>OBHEMCS</p>
+      </div>
+
+
       <div className="nav-menu">
         <NavLink to="/"> Nodes </NavLink>
         <p> Device</p>

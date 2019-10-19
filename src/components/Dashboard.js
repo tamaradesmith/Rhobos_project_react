@@ -4,34 +4,31 @@ import { Device, Sensor, Controller } from "../js/requests"
 import ReadingDetail from "./partials/ReadingDetail";
 import '../styles/dashboard.scss'
 import Button from "./partials/Button";
+import { format } from 'date-fns'
+
+
 
 
 function formateTime(str) {
   return str.slice(0, -6)
 }
-function timeToMin(times){
-  // times.map(time =>{
-  //   console.log(time.time)
-  // })
-}
+
 
 function convertToChartData(allReadings) {
   const temp = {}
-  allReadings.forEach(readings =>{
-    readings.forEach(reading =>{
-      const data = temp[formateTime(reading.time)] || {time:formateTime(reading.time)}
-
-      data[reading.sensor_id] = reading.value;
-      temp[formateTime(reading.time)] = {...data}
+  allReadings.forEach(readings => {
+    readings.forEach(reading => {
+      const data = temp[formateTime(reading.time)] || { time: format(new Date(reading.time), "H:m:s"), date: format(new Date(reading.time), "MMM d") }
+      data[reading.sensor] = reading.value;
+      temp[formateTime(reading.time)] = { ...data }
     })
   })
-  // timeToMin(temp)
-  console.log(temp)
-  return Object.values(temp).sort()
+  // console.log(temp)
+  return Object.values(temp).sort().reverse()
 }
 
 
-class DashBoard extends React.Component {
+class Dashboard extends React.Component {
   state = {
     device: this.props.id,
     sensors: [],
@@ -39,6 +36,7 @@ class DashBoard extends React.Component {
     controllers: [],
     chartReadings: [],
     valueKeys: [],
+    controllersState: [],
     lastReading: "",
     isLoading: true,
   }
@@ -59,14 +57,12 @@ class DashBoard extends React.Component {
         readings => {
           this.setState({
             readings: convertToChartData([...readings]),
-            valueKeys: readings.map(r =>r[0].sensor_id),
+            valueKeys: readings.map(r => r[0].sensor),
             isLoading: false,
           });
         });
 
 
-
-    
     // Sensor.getSensorReadings(1)
     //   .then(
     //     readings => {
@@ -82,17 +78,27 @@ class DashBoard extends React.Component {
           this.setState({
             lastReading: reading[0],
             isLoading: false,
-          })
-        })
-    Device.getControllers(this.props.match.params.id)
+          });
+        });
+
+    // Device.getControllers(this.props.match.params.id)
+    //   .then(
+    //     controllers => {
+    //       this.setState({
+    //         controllers: [...controllers],
+    //         isLoading: false,
+    //       });
+    //     });
+
+    Device.getControllersState(this.props.match.params.id)
       .then(
         controllers => {
+          console.log("controllers : ", controllers)
           this.setState({
             controllers: [...controllers],
-            isLoading: false,
-          })
-        }
-      )
+            isLoading: false
+          });
+        });
   };
 
 
@@ -105,14 +111,14 @@ class DashBoard extends React.Component {
     return (
       <main className="grid-dashboard card">
 
-
+        <div className="corner-grid"></div>
         <ReadingDetail reading={lastReading} sensor={sensors[0]} getCurrentReading={() => {
           Sensor.getCurrentReading(7)
         }} />
 
         {controllers.map(controller => (
-          <div key={Controller.id} className="column-1" >
-            <Button onToggle={() => Controller.toggleBoolean(controller.id)} controller={controller} />
+          <div key={controller.id} className="column-1" >
+            <Button onToggle={() => Controller.toggleBoolean(controller.id)} controller={controller}  />
           </div>
         ))}
 
@@ -125,4 +131,4 @@ class DashBoard extends React.Component {
   }
 }
 
-export default DashBoard
+export default Dashboard
