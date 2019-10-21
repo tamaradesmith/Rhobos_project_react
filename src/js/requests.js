@@ -19,15 +19,31 @@ const Device = {
     const res = await fetch(`${BASE_URL}/devices/${device_id}/controllers`, {});
     return res.json();
   },
-  async getControllersState(device_id){
-    const res = await fetch(`${BASE_URL}/devices/${device_id}/controllers/state`, {});
-    return res.json();
-  }
 }
 
 const Node = {
+  async one(node_id){
+    const res = await fetch(`${BASE_URL}/nodes/${node_id}`, {});
+    return res.json();
+  },
   async all() {
     const res = await fetch(`${BASE_URL}/nodes`, {});
+    return res.json();
+  },
+  async allDevicesOnNode(nodeId){
+    const res = await fetch(`${BASE_URL}/nodes/${nodeId}/devices`)
+    return res.json();
+  },
+  async allSensorsOnNode(nodeId) {
+    const res = await fetch(`${BASE_URL}/nodes/${nodeId}/sensors`)
+    return res.json();
+  },
+  async getAllControllersWithState(node_id) {
+    const res = await fetch(`${BASE_URL}/nodes/${node_id}/controllers/state`, {});
+    return res.json();
+  },
+  async getReadingsSenosrsOnNode(node_id) {
+    const res = await fetch(`${BASE_URL}/nodes/${node_id}/sensors/readings`, {});
     return res.json();
   },
 }
@@ -43,9 +59,14 @@ const Sensor = {
     const res = await fetch(`${BASE_URL}/device/${device_id}/sensors/readings`, {});
     return res.json();
   },
-  // get last reading from sensor
+  // get last reading from one sensor
   async getLastReading(sensor_id) {
     const res = await fetch(`${BASE_URL}/sensor/${sensor_id}/reading`, {});
+    return res.json();
+  },
+  // get last reading from All sensors
+  async getLastReadingAllSensors(node_id) {
+    const res = await fetch(`${BASE_URL}/nodes/${node_id}/sensors/reading`, {});
     return res.json();
   },
   async getCurrentReading(sensor_id) {

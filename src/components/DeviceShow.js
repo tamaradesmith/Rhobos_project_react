@@ -54,35 +54,43 @@ class DeviceShow extends React.Component {
       <main className="DeviceDetail card">
 
         <h2>Device: {device.name} </h2>
-        <Link to={`/device/${device.id}/dashboard`} > Dashboard</Link>
-        <h4 className="title">
-          Sensors:
+
+
+
+        {sensors.lenght !== 0  ? (
+          <>
+            <h4 className="title">
+              Sensors:
             </h4>
-        <table className="device-table">
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Min Value</th>
-              <th>Max Value</th>
-              <th>Unit</th>
-              {/* <th>Value</th> */}
-            </tr>
+            <table className="device-table">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Min Value</th>
+                  <th>Max Value</th>
+                  <th>Unit</th>
+                  {/* <th>Value</th> */}
+                </tr>
 
 
-            {sensors.map((sensor, index) => (
-              <>
-                <SensorDetail sensor={sensor}
-                  even={this.even(index)} />
-              </>
+                {sensors.map((sensor, index) => (
+                  <>
+                    <SensorDetail sensor={sensor}
+                      even={this.even(index)} />
+                  </>
 
-            ))}
+                ))}
 
-          </tbody>
-        </table>
+              </tbody>
+            </table>
+          </>
+        ) : (null)}
 
 
 
+        {controllers.lenght  !==1 ? (
+          <>
         <h4 className="title"> Controllers</h4>
 
         <table className="device-table">
@@ -93,16 +101,17 @@ class DeviceShow extends React.Component {
               {/* <th>Value</th> */}
             </tr>
 
-        {controllers.map(
-          (controller, index) => (
-            <>
-              <ControllerDetail controller={controller} even={this.even(index)} />
-            </>
-          )
-        )}
+            {controllers.map(
+              (controller, index) => (
+                <>
+                  <ControllerDetail controller={controller} even={this.even(index)} />
+                </>
+              )
+            )}
           </tbody>
         </table>
-
+        </>
+       ) : (null)}
       </main>
     )
   }

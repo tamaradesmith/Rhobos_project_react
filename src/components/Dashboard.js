@@ -1,6 +1,6 @@
 import React from "react"
 import Chart from './partials/Chart'
-import { Device, Sensor, Controller } from "../js/requests"
+import { Device, Sensor, Controller, Node } from "../js/requests"
 import ReadingDetail from "./partials/ReadingDetail";
 import '../styles/dashboard.scss'
 import Button from "./partials/Button";
@@ -30,29 +30,29 @@ function convertToChartData(allReadings) {
 
 class Dashboard extends React.Component {
   state = {
-    device: this.props.id,
+    node: this.props.id,
     sensors: [],
     readings: [],
     controllers: [],
     chartReadings: [],
     valueKeys: [],
     controllersState: [],
-    lastReading: "",
+    lastReadings: [],
     isLoading: true,
   }
 
 
   componentDidMount() {
 
-    Device.getSensors(this.props.match.params.id).then(
+    Node.allSensorsOnNode(this.props.match.params.id).then(
       sensors => {
         this.setState({
-          sensors: [...sensors],
+          sensors: [...sensors.flat()],
           isLoading: false,
         });
       })
 
-    Sensor.getReadings(this.props.match.params.id)
+    Node.getReadingsSenosrsOnNode(this.props.match.params.id)
       .then(
         readings => {
           this.setState({
@@ -63,68 +63,76 @@ class Dashboard extends React.Component {
         });
 
 
-    // Sensor.getSensorReadings(1)
-    //   .then(
-    //     readings => {
-    //       this.setState({
-    //         readings: [...readings],
-    //         isLoading: false,
-    //       });
-    //     });
+    // // Sensor.getSensorReadings(sensor_id)
+    // //   .then(
+    // //     readings => {
+    // //       this.setState({
+    // //         readings: [...readings],
+    // //         isLoading: false,
+    // //       });
+    // //     });
 
-    Sensor.getLastReading(7)
+    Sensor.getLastReadingAllSensors(this.props.match.params.id)
       .then(
-        reading => {
+        readings => {
           this.setState({
-            lastReading: reading[0],
+            lastReadings: [...readings],
             isLoading: false,
           });
         });
 
-    // Device.getControllers(this.props.match.params.id)
-    //   .then(
-    //     controllers => {
-    //       this.setState({
-    //         controllers: [...controllers],
-    //         isLoading: false,
-    //       });
-    //     });
 
-    Device.getControllersState(this.props.match.params.id)
+    Node.getAllControllersWithState(this.props.match.params.id)
       .then(
         controllers => {
-          console.log("controllers : ", controllers)
           this.setState({
             controllers: [...controllers],
             isLoading: false
           });
+        }).catch(err =>{
+          this.setState({
+            controllers: [],
+            isLoading: false,
+          })
         });
   };
 
 
   render() {
-    const { sensors, lastReading, controllers } = this.state;
+    const { sensors, lastReadings, controllers } = this.state;
 
-    if (!sensors || !this.state.readings || !lastReading || !controllers) {
+    if (this.state.isLoading) {
       return <p> loading</p>
     }
+
     return (
-      <main className="grid-dashboard card">
 
-        <div className="corner-grid"></div>
-        <ReadingDetail reading={lastReading} sensor={sensors[0]} getCurrentReading={() => {
-          Sensor.getCurrentReading(7)
-        }} />
+      <main className=" card">
+        <h3>
+          Dashboard: 
+        </h3>
 
-        {controllers.map(controller => (
-          <div key={controller.id} className="column-1" >
-            <Button onToggle={() => Controller.toggleBoolean(controller.id)} controller={controller}  />
+        <div className="grid-dashboard">
+
+          <div className="corner-grid"></div>
+          {sensors.map((sensor, index) => (
+            <div key={sensor.id}>
+              <ReadingDetail reading={lastReadings[index]} sensor={sensor} getCurrentReading={() => {
+                Sensor.getCurrentReading(sensor.id)
+              }} />
+            </div>
+          ))}
+
+          {controllers.map(controller => (
+            <div key={controller.id} className="column-1" >
+              <Button onToggle={() => Controller.toggleBoolean(controller.id)} controller={controller} />
+            </div>
+          ))}
+
+
+          <div className="chart-div">
+            <Chart readings={this.state.readings} valueKeys={this.state.valueKeys} />
           </div>
-        ))}
-
-
-        <div className="chart-div">
-          <Chart readings={this.state.readings} valueKeys={this.state.valueKeys} />
         </div>
       </main>
     )

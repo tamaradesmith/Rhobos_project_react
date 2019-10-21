@@ -1,9 +1,24 @@
+h3 {
+  font-size: 1.25em;
+  padding: .5em 0;
+  text-align: center;
+  font-weight: 500;
+}
+h4{
+  font-size: 1.1em;
+  padding: .5em 0;
+}
+.link-font{
+  color: aliceblue;
+  text-decoration: none;
+
+}
 .node-card{
   border: 10px double rgb(9, 46, 10);
   background: rgba(9, 46, 10, 0.671);
   display: flex;
   flex-direction: column;
-  padding: .5em .75em;
+  padding: .5em .75em 1em;
   margin: 1em 0;
 }
 .node-header{
@@ -13,4 +28,12 @@
 .grid-device{
   display: grid;
    grid-template-columns: 150px auto;
+}
+.node-body{
+  padding: .5em;
+  font-size: 1.1em;
+    text-decoration: none;
+}
+.table-width{
+  width: 90%;
 }
