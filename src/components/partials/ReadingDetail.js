@@ -1,27 +1,61 @@
 import React from "react";
-// import { Sensor } from "../../js/requests";
+import { Sensor } from "../../js/requests";
 
-function ReadingDetail(props) {
+class ReadingDetail extends React.Component {
 
 
-  const { reading } = props;
-  const { sensor } = props;
-  const handleButtonClick =() => {
-    props.getCurrentReading()
-  }
+  state = {
+    reading: (this.props.reading) ? this.props.reading.value : "",
+    isLoading: true,
+  };
   
-  if (!sensor) {
-    return ""
+
+  handleButtonClick = () => {
+    Sensor.getCurrentReading(this.props.sensor.id)
+      .then(
+        reading => {
+          console.log("reading ", reading)
+          this.setState({
+            reading: reading,
+          }) 
+        }
+      )
+
   }
-  if (!reading) {
-    return <p> loading </p>
+  componentDidMount() {
+
+    Sensor.getLastReading(this.props.sensor.id)
+      .then(
+        reading => {
+          this.setState({
+            reading: reading[0].value,
+            isLoading: false
+          })
+        })
   }
-  
-  return (
-    <button className="reading-div" onClick={handleButtonClick}>
-      <p>{sensor.name.toUpperCase()} </p>
-      <p>{reading.value}</p>
-    </button>
-  )
+
+
+
+
+
+
+  render() {
+
+    const { reading } = this.state;
+    const { sensor } = this.props;
+
+
+    if (!sensor) {
+      return ""
+    }
+
+
+    return (
+      <button className="reading-div" onClick={this.handleButtonClick}>
+        <p>{sensor.name.toUpperCase()} </p>
+        <p>{reading}</p>
+      </button>
+    )
+  }
 }
 export default ReadingDetail

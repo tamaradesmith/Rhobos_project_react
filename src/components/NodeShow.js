@@ -54,7 +54,7 @@ class NodeShow extends React.Component {
               <div>
                 {devices.map(device => (
                   <div key={device.id} className="grid-device">
-                    {device.node_id == node.id ? (
+                    {device.node_id === parseFloat(node.id)  ? (
                       <>
                         <Link to={`/devices/${device.id}`}  >
                           <p>

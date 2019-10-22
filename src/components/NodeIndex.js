@@ -56,7 +56,7 @@ class NodeIndex extends React.Component {
                       {devices.map(device => (
 
                         <tr key={device.id} >
-                          {device.node_id == node.id ? (
+                          {device.node_id === parseFloat(node.id) ? (
                             <>
                               <td> {device.name} </td>
                               <td> {device.description} </td>

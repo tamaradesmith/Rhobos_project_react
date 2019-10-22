@@ -57,7 +57,7 @@ class DeviceShow extends React.Component {
 
 
 
-        {sensors.lenght !== 0  ? (
+        {sensors.length !== 0  ? (
           <>
             <h4 className="title">
               Sensors:
@@ -76,7 +76,7 @@ class DeviceShow extends React.Component {
 
                 {sensors.map((sensor, index) => (
                   <>
-                    <SensorDetail sensor={sensor}
+                    <SensorDetail key={sensor.id} sensor={sensor}
                       even={this.even(index)} />
                   </>
 
@@ -89,7 +89,7 @@ class DeviceShow extends React.Component {
 
 
 
-        {controllers.lenght  !==1 ? (
+        {controllers.length  !==0 ? (
           <>
         <h4 className="title"> Controllers</h4>
 
@@ -104,7 +104,7 @@ class DeviceShow extends React.Component {
             {controllers.map(
               (controller, index) => (
                 <>
-                  <ControllerDetail controller={controller} even={this.even(index)} />
+                  <ControllerDetail key={controller.id} controller={controller} even={this.even(index)} />
                 </>
               )
             )}

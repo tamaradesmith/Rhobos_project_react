@@ -16,9 +16,8 @@ function Chart(props) {
 
   return (
     <main>
-    {console.log(props.readings)}
         <ResponsiveContainer width="100%" height={600} className="chart-div" >
-        <LineChart data={props.readings} margin={{ top: 20, right: 30, left: 20, bottom: 15 }}>
+        <LineChart data={props.readings} margin={{ top: 20, right: 30, left: 40, bottom: 15 }}>
             {props.valueKeys.map((key, index) => (
 
               <Line type='monotone' dataKey={key} stroke={colours[index]} strokeWidth={3} key={index} />

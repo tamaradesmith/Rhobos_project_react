@@ -1,6 +1,6 @@
 import React from "react"
 import Chart from './partials/Chart'
-import { Device, Sensor, Controller, Node } from "../js/requests"
+import { Controller, Node } from "../js/requests"
 import ReadingDetail from "./partials/ReadingDetail";
 import '../styles/dashboard.scss'
 import Button from "./partials/Button";
@@ -62,7 +62,6 @@ class Dashboard extends React.Component {
           });
         });
 
-
     // // Sensor.getSensorReadings(sensor_id)
     // //   .then(
     // //     readings => {
@@ -72,15 +71,14 @@ class Dashboard extends React.Component {
     // //       });
     // //     });
 
-    Sensor.getLastReadingAllSensors(this.props.match.params.id)
-      .then(
-        readings => {
-          this.setState({
-            lastReadings: [...readings],
-            isLoading: false,
-          });
-        });
-
+    // Sensor.getLastReadingAllSensors(this.props.match.params.id)
+    //   .then(
+    //     readings => {
+    //       this.setState({
+    //         lastReadings: [...readings],
+    //         isLoading: false,
+    //       });
+    //     });
 
     Node.getAllControllersWithState(this.props.match.params.id)
       .then(
@@ -89,7 +87,7 @@ class Dashboard extends React.Component {
             controllers: [...controllers],
             isLoading: false
           });
-        }).catch(err =>{
+        }).catch(err => {
           this.setState({
             controllers: [],
             isLoading: false,
@@ -99,7 +97,7 @@ class Dashboard extends React.Component {
 
 
   render() {
-    const { sensors, lastReadings, controllers } = this.state;
+    const { sensors, controllers } = this.state;
 
     if (this.state.isLoading) {
       return <p> loading</p>
@@ -109,7 +107,7 @@ class Dashboard extends React.Component {
 
       <main className=" card">
         <h3>
-          Dashboard: 
+          Dashboard:
         </h3>
 
         <div className="grid-dashboard">
@@ -117,9 +115,7 @@ class Dashboard extends React.Component {
           <div className="corner-grid"></div>
           {sensors.map((sensor, index) => (
             <div key={sensor.id}>
-              <ReadingDetail reading={lastReadings[index]} sensor={sensor} getCurrentReading={() => {
-                Sensor.getCurrentReading(sensor.id)
-              }} />
+              <ReadingDetail  sensor={sensor}  />
             </div>
           ))}
 
@@ -128,7 +124,6 @@ class Dashboard extends React.Component {
               <Button onToggle={() => Controller.toggleBoolean(controller.id)} controller={controller} />
             </div>
           ))}
-
 
           <div className="chart-div">
             <Chart readings={this.state.readings} valueKeys={this.state.valueKeys} />
