@@ -1,17 +1,6 @@
-h3 {
-  font-size: 1.25em;
-  padding: .5em 0;
-  text-align: center;
-  font-weight: 500;
-}
-h4{
-  font-size: 1.1em;
-  padding: .5em 0;
-}
 .link-font{
   color: aliceblue;
   text-decoration: none;
-
 }
 .node-card{
   border: 10px double rgb(9, 46, 10);
@@ -23,7 +12,7 @@ h4{
 }
 .node-header{
   text-align: center;
-  text-decoration-line: underline;
+  /* text-decoration-line: underline; */
 }
 .grid-device{
   display: grid;

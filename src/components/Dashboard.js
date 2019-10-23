@@ -21,9 +21,9 @@ function convertToChartData(allReadings) {
       const data = temp[formateTime(reading.time)] || { time: format(new Date(reading.time), "H:m:s"), date: format(new Date(reading.time), "MMM d") }
       data[reading.sensor] = reading.value;
       temp[formateTime(reading.time)] = { ...data }
+
     })
   })
-  // console.log(temp)
   return Object.values(temp).sort().reverse()
 }
 
@@ -31,6 +31,7 @@ function convertToChartData(allReadings) {
 class Dashboard extends React.Component {
   state = {
     node: this.props.id,
+    nodeName: "",
     sensors: [],
     readings: [],
     controllers: [],
@@ -41,6 +42,9 @@ class Dashboard extends React.Component {
     isLoading: true,
   }
 
+  backtoNode = (() => {
+    this.props.history.goBack()
+  })
 
   componentDidMount() {
 
@@ -62,24 +66,6 @@ class Dashboard extends React.Component {
           });
         });
 
-    // // Sensor.getSensorReadings(sensor_id)
-    // //   .then(
-    // //     readings => {
-    // //       this.setState({
-    // //         readings: [...readings],
-    // //         isLoading: false,
-    // //       });
-    // //     });
-
-    // Sensor.getLastReadingAllSensors(this.props.match.params.id)
-    //   .then(
-    //     readings => {
-    //       this.setState({
-    //         lastReadings: [...readings],
-    //         isLoading: false,
-    //       });
-    //     });
-
     Node.getAllControllersWithState(this.props.match.params.id)
       .then(
         controllers => {
@@ -93,23 +79,32 @@ class Dashboard extends React.Component {
             isLoading: false,
           })
         });
+        Node.one(this.props.match.params.id)
+        .then(
+          node=>{
+            this.setState({
+              node: node.name,
+              isLoading: false,
+            })
+          }
+        )
   };
 
 
   render() {
-    const { sensors, controllers } = this.state;
+    const { sensors, controllers, node } = this.state;
 
-    if (this.state.isLoading) {
+    if (this.state.isLoading || !node) {
       return <p> loading</p>
     }
 
     return (
 
-      <main className=" card">
-        <h3>
-          Dashboard:
+      <main className="card">
+        <h3 className="header">
+          Dashboard: {node.toUpperCase()}
         </h3>
-
+        <button onClick={this.backtoNode} className="link-button">Back to Node </button>
         <div className="grid-dashboard">
 
           <div className="corner-grid"></div>
@@ -125,7 +120,7 @@ class Dashboard extends React.Component {
             </div>
           ))}
 
-          <div className="chart-div">
+          <div className="chart-div ">
             <Chart readings={this.state.readings} valueKeys={this.state.valueKeys} />
           </div>
         </div>

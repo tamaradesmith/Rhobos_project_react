@@ -1,7 +1,6 @@
 .device-card{
   display: flex;
   flex-direction: column;
-  /* border-top: 10px double rgb(9, 46, 10); */
   margin: 1em 0em;
 }
 .device-table{
@@ -16,7 +15,7 @@
     background: rgba(9, 46, 10, 0.671);
 }
 .device-table th {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 500;
   background: rgba(9, 46, 10, 0.8);;
   color: ghostwhite;

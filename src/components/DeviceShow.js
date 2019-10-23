@@ -1,6 +1,5 @@
 import React from "react";
 import { Device } from "../js/requests"
-import { Link } from 'react-router-dom'
 import SensorDetail from "./SensorDetail";
 import ControllerDetail from "./ControllerDetail"
 import '../styles/device.scss'
@@ -13,9 +12,10 @@ class DeviceShow extends React.Component {
     isLoading: true
   };
 
-  even(number) {
-    return number % 2 === 0;
-  }
+  backtoNode = (() => {
+
+    this.props.history.goBack()
+  })
 
   componentDidMount() {
     Device.one(this.props.match.params.id)
@@ -40,45 +40,39 @@ class DeviceShow extends React.Component {
           controllers: [...controllers],
           isLoading: false,
         });
-      }
-    );
+      });
   };
   render() {
-    if (!this.state.device || !this.state.controllers || !this.state.sensors) {
+    const { device, sensors, controllers } = this.state;
+    if (!device || !controllers || !sensors) {
       return <p> loading</p>
     }
-
-    const { device, sensors, controllers } = this.state;
 
     return (
       <main className="DeviceDetail card">
 
-        <h2>Device: {device.name} </h2>
+        <h3 className="header">Device: {device.name.toUpperCase()} </h3>
+        <div className="div-space" />
+
+        <button onClick={this.backtoNode} className="link-button">Back to Node </button>
 
 
-
-        {sensors.length !== 0  ? (
+        {sensors.length !== 0 ? (
           <>
-            <h4 className="title">
-              Sensors:
-            </h4>
             <table className="device-table">
               <tbody>
                 <tr>
-                  <th>Name</th>
+                  <th>Sensor</th>
                   <th>Type</th>
                   <th>Min Value</th>
                   <th>Max Value</th>
+                  <th>Value</th>
                   <th>Unit</th>
-                  {/* <th>Value</th> */}
                 </tr>
 
-
                 {sensors.map((sensor, index) => (
-                  <>
-                    <SensorDetail key={sensor.id} sensor={sensor}
-                      even={this.even(index)} />
-                  </>
+
+                  <SensorDetail key={sensor.id} sensor={sensor} />
 
                 ))}
 
@@ -89,29 +83,28 @@ class DeviceShow extends React.Component {
 
 
 
-        {controllers.length  !==0 ? (
+        {controllers.length !== 0 ? (
           <>
-        <h4 className="title"> Controllers</h4>
 
-        <table className="device-table">
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              {/* <th>Value</th> */}
-            </tr>
+            <table className="device-table">
+              <tbody>
+                <tr>
+                  <th>Controllers</th>
+                  <th>Type</th>
+                  {/* <th>Value</th> */}
+                </tr>
 
-            {controllers.map(
-              (controller, index) => (
-                <>
-                  <ControllerDetail key={controller.id} controller={controller} even={this.even(index)} />
-                </>
-              )
-            )}
-          </tbody>
-        </table>
-        </>
-       ) : (null)}
+                {controllers.map(
+                  (controller, index) => (
+                    <>
+                      <ControllerDetail key={controller.id} controller={controller}  />
+                    </>
+                  )
+                )}
+              </tbody>
+            </table>
+          </>
+        ) : (null)}
       </main>
     )
   }
