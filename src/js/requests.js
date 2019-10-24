@@ -22,7 +22,7 @@ const Device = {
 }
 
 const Node = {
-  async one(node_id){
+  async one(node_id) {
     const res = await fetch(`${BASE_URL}/nodes/${node_id}`, {});
     return res.json();
   },
@@ -30,7 +30,7 @@ const Node = {
     const res = await fetch(`${BASE_URL}/nodes`, {});
     return res.json();
   },
-  async allDevicesOnNode(nodeId){
+  async allDevicesOnNode(nodeId) {
     const res = await fetch(`${BASE_URL}/nodes/${nodeId}/devices`)
     return res.json();
   },
@@ -80,6 +80,14 @@ const Controller = {
   async toggleBoolean(controller_id) {
     const res = await fetch(`${BASE_URL}/controller/${controller_id}/boolean`, {});
     return res.text();
+  },
+  async getLightShows(controller_id) {
+    const res = await fetch(`${BASE_URL}/controllers/${controller_id}/shows`, {});
+    return res.json();
+  },
+  changeDefaultShow(show_id) {
+    const res = fetch(`${BASE_URL}/controller/lightshow/${show_id}/change`, {})
+    return res.text;
   },
 
 }

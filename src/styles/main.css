@@ -1,4 +1,11 @@
 @import url(reset.css);
+@import url(font.css);
+
+:root {
+  --primary-colour: #3c7509;
+  --secondary-colour: #d3ee07;
+  --main-font: 'IBM Plex Mono', monospace;
+}
 
 html {
   box-sizing: border-box;
@@ -12,13 +19,9 @@ html {
 
 body {
   height: 100%;
-  color: aliceblue;
-  background-image: url("../images/scott-webb-UjupleczBOY-unsplash.jpg");
-
-  /* background-image: url("../images/emma-frances-logan-tuGcNzcveo4-unsplash.jpg"); */
-  /* background-image: url("../images/abstract-grey-textured.jpg"); */
-  /* background-image: url("../images/scott-webb-qauaqihMwpc-unsplash.jpg"); */
-
+  font-family:  'IBM Plex Mono', monospace;
+  color: black;
+  background-image: linear-gradient(135deg, #3c7509, #d3ee07);
   background-size: 100% 100%;
   background-attachment: fixed;
   font-size: 1.5em;
@@ -29,25 +32,25 @@ h1 {
   padding: 1em;
 }
 h2 {
-  font-size: 1.7em;
-  font-weight: 600;
+  font-size: 1.6em;
+  font-weight: 500;
 }
 h3 {
-  font-size: 1.4em;
+  font-size: 1.6em;
   padding: 0.75em 0;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
 }
 h4 {
   font-size: 1.1em;
   font-weight: 400;
 }
 a {
-  color: aliceblue;
+  color: black;
   text-decoration: none;
 }
-a:hover{
-  color: lightgreen;
+a:hover {
+  color: gray;
 }
 .NavBar {
   display: flex;
@@ -56,8 +59,6 @@ a:hover{
   align-items: center;
   min-height: 75px;
   padding: 0.25em;
-  background: rgba(9, 46, 10, 0.671);
-  border: 10px double rgb(9, 46, 10);
 }
 .nav-icon {
   max-height: 95px;
@@ -69,7 +70,9 @@ a:hover{
   align-items: center;
 }
 .nav-text {
-  font-size: 1.5em;
+  font-size: 1.75em;
+  font-family: "Merienda", cursive;
+  font-weight: 500;
 }
 .nav-menu {
   flex: 1;
@@ -79,8 +82,6 @@ a:hover{
   align-content: center;
 }
 .card {
-  border: 10px double rgb(9, 46, 10);
-  background: rgba(9, 46, 10, 0.671);
   display: flex;
   flex-direction: column;
   padding: 0.5em 0.75em;
@@ -91,22 +92,25 @@ a:hover{
 }
 .dashboard-link {
   font-size: 1.2em;
-  /* text-align: right; */
   padding: 1em 0;
 }
 .header {
-  border-bottom: 10px double rgb(9, 46, 10);
   margin: 0.5em 0;
   padding: 0.5em 0;
 }
 .home-header {
   font-size: 1.75em;
-  border-bottom: 10px double rgb(9, 46, 10);
   margin: 0.5em 0;
   padding: 0.5em 0;
 }
+.home-image {
+  max-width: 100%;
+  margin: 0.5em auto;
+}
+.image {
+  margin: 0.5em auto;
+}
 .link-button {
-  color: aliceblue;
   background: transparent;
   border: none;
   font-size: 1.1em;
@@ -114,6 +118,83 @@ a:hover{
   text-align: left;
   width: 175px;
 }
-.link-button:hover{
-  color: lightgreen;
+.link-button:hover {
+  color: gray;
+}
+.title {
+  padding: 0.5em 0;
+  margin: 0.5em 0;
+}
+.radio-show {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 600px;
+}
+.toggle-labels {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+.reading-labels {
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: .5em;
+}
+.arrow-icon{
+  width: 15px;
+}
+
+
+
+/* toggle */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 4em;
+  height: 2em;
+}
+.switch input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background-color: black;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+  position: absolute;
+  content: "";
+  height: 1.6em;
+  width: 1.6em;
+  left: 4px;
+  bottom: 4px;
+  background-color: darkred;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: black;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px black;
+}
+
+input:checked + .slider:before {
+  transform: translateX(2em);
+  background-color: var(--primary-colour);
 }

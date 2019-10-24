@@ -1,11 +1,34 @@
 import React from 'react'
+import { Controller } from '../js/requests'
 
 function ControllerDetail(props) {
-  const { controller } = props
+  const { controller, includeLed, shows } = props
+
+  function handleChange(e) {
+    const show = e.target.value
+    Controller.changeDefaultShow(show)
+  }
+
   return (
     <tr className="ControllerDetails" key={controller.id}>
       <td> {controller.name} </td>
       <td>{controller.type}</td>
+
+
+      {includeLed === true ? (
+
+        <td id="shows" className="radio-show">
+            {shows.map(show => (
+              <div>
+              <label>{show.name}</label>
+                <input type="radio" key={show.id} value={show.id} name="ledshow" onChange={handleChange} />
+</div>
+            ))}
+            
+        </td>
+
+      ) : (null)}
+
     </tr>
   )
 }

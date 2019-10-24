@@ -1,28 +1,25 @@
-.link-font{
-  color: aliceblue;
-  text-decoration: none;
-}
-.node-card{
-  border: 10px double rgb(9, 46, 10);
-  background: rgba(9, 46, 10, 0.671);
+.node-card {
+  /* border: 10px double rgb(9, 46, 10); */
+  /* background: rgba(9, 46, 10, 0.671); */
   display: flex;
   flex-direction: column;
-  padding: .5em .75em 1em;
+  padding: 0.5em 0.75em 1em;
   margin: 1em 0;
+  min-height: 100vh;
 }
-.node-header{
+.node-header {
   text-align: center;
-  /* text-decoration-line: underline; */
+  /* font-family: "Baloo Bhaijaan", cursive; */
 }
-.grid-device{
+.grid-device {
   display: grid;
-   grid-template-columns: 150px auto;
+  grid-template-columns: 150px auto;
 }
-.node-body{
-  padding: .5em;
+.node-body {
+  padding: 0.5em;
   font-size: 1.1em;
-    text-decoration: none;
+  text-decoration: none;
 }
-.table-width{
+.table-width {
   width: 90%;
 }

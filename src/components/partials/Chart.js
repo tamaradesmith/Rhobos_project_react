@@ -2,8 +2,6 @@ import React from 'react';
 import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import '../../styles/dashboard.scss';
 import chroma from "chroma-js"
-// import { scaleLog } from 'd3-scale';
-
 
 
 function Chart(props) {
@@ -11,7 +9,7 @@ function Chart(props) {
   if (!props.readings) {
     return "Leading"
   }
-  const colours = chroma.scale(['#fa0000', '#0000ff'])
+  const colours = chroma.scale(['#550000','#005500', '#000055'])
     .mode('lch').colors(props.valueKeys.length)
 
   return (
@@ -22,14 +20,14 @@ function Chart(props) {
 
           {props.valueKeys.map((key, index) => (
 
-            <Line type='monotone' dataKey={key} stroke={colours[index]} strokeWidth={3} key={index} />
+            <Line connectNulls type='monotone' dataKey={key} stroke={colours[index]} strokeWidth={3} key={index} />
           ))}
 
-          <XAxis type="category" dataKey="time" interval={4} position='bottom' height={50} xAxisId={0} />
+          <XAxis type="category" dataKey="time" interval={4} position='bottom' height={60} xAxisId={0} />
 
           <XAxis type="category" xAxisId={1} allowDuplicatedCategories={false} label={{ angle: 0, position: 'bottom' }} interval={12} dataKey="date" tickLine={false} tick={{ fontSize: 24, angle: 0 }} />
 
-          <YAxis scale="log" domain={[1, 'dataMax']} />
+          <YAxis scale="log" domain={[1, dataMax => (dataMax * 2)]} />
 
           <Legend verticalAlign="bottom" height={36} iconSize={30} />
 

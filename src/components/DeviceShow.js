@@ -1,21 +1,43 @@
 import React from "react";
-import { Device } from "../js/requests"
+import { Device, Controller } from "../js/requests"
 import SensorDetail from "./SensorDetail";
 import ControllerDetail from "./ControllerDetail"
 import '../styles/device.scss'
+
+
+
+
 
 class DeviceShow extends React.Component {
   state = {
     device: this.props.id,
     sensors: [],
     controllers: [],
+    led: false,
+    lightShows: [],
     isLoading: true
   };
 
-  backtoNode = (() => {
-
-    this.props.history.goBack()
+  incluseLeds = (() => {
+    this.state.controllers.forEach(controller => {
+      if (controller.type.toLowerCase() === "led") {
+        Controller.getLightShows(controller.id)
+          .then(
+            shows => {
+              this.setState({
+                lightShows: [...shows],
+                led: true
+              })
+            })
+      }
+    })
   })
+
+
+
+  backtoNode = (() => {
+    this.props.history.goBack();
+  });
 
   componentDidMount() {
     Device.one(this.props.match.params.id)
@@ -28,6 +50,9 @@ class DeviceShow extends React.Component {
 
     Device.getSensors(this.props.match.params.id).then(
       sensors => {
+        sensors.map(sensor => {
+          sensor.name = sensor.name[0].toUpperCase() + sensor.name.slice(1)
+        })
         this.setState({
           sensors: [...sensors],
           isLoading: false,
@@ -36,14 +61,20 @@ class DeviceShow extends React.Component {
     );
     Device.getControllers(this.props.match.params.id).then(
       controllers => {
+        controllers.map(controller => {
+          controller.name = controller.name[0].toUpperCase() + controller.name.slice(1)
+        })
         this.setState({
           controllers: [...controllers],
           isLoading: false,
-        });
+        })
+        this.incluseLeds();
       });
+
+
   };
   render() {
-    const { device, sensors, controllers } = this.state;
+    const { device, sensors, controllers, led, lightShows } = this.state;
     if (!device || !controllers || !sensors) {
       return <p> loading</p>
     }
@@ -70,7 +101,7 @@ class DeviceShow extends React.Component {
                   <th>Unit</th>
                 </tr>
 
-                {sensors.map((sensor, index) => (
+                {sensors.map((sensor) => (
 
                   <SensorDetail key={sensor.id} sensor={sensor} />
 
@@ -82,7 +113,6 @@ class DeviceShow extends React.Component {
         ) : (null)}
 
 
-
         {controllers.length !== 0 ? (
           <>
 
@@ -91,14 +121,17 @@ class DeviceShow extends React.Component {
                 <tr>
                   <th>Controllers</th>
                   <th>Type</th>
-                  {/* <th>Value</th> */}
+                  {led === true ? (
+                    <th>Default Show</th>
+
+                  ) : (null)}
                 </tr>
 
                 {controllers.map(
-                  (controller, index) => (
-                    <>
-                      <ControllerDetail key={controller.id} controller={controller}  />
-                    </>
+                  (controller) => (
+
+                    <ControllerDetail key={controller.id} controller={controller} includeLed={led} shows={lightShows} />
+
                   )
                 )}
               </tbody>

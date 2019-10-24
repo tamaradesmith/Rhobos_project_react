@@ -1,6 +1,5 @@
 import React from "react"
 import { Sensor } from "../js/requests";
-import '../styles/details.scss'
 
 class SensorDetail extends React.Component {
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Sensor } from "../../js/requests";
+import arrow from "../../images/arrow-left-solid.svg"
 
 class ReadingDetail extends React.Component {
 
@@ -13,7 +14,6 @@ class ReadingDetail extends React.Component {
     Sensor.getCurrentReading(this.props.sensor.id)
       .then(
         reading => {
-          console.log("reading ", reading)
           this.setState({
             reading: reading,
           });
@@ -42,13 +42,17 @@ class ReadingDetail extends React.Component {
     }
 
     return (
-      <button className="reading-div" onClick={this.handleButtonClick}>
+      <div>
+
       {(sensor.type === "temperature") ? (
-        <p>{sensor.device} </p>
+        <p className="toggle-labels">{sensor.device} </p>
       ):(null)}
-        <p>{sensor.name.toUpperCase()} </p>
-        <p>{reading}</p>
+        <p className="reading-labels">{sensor.name} </p>
+      <button className="reading-div reading-button" onClick={this.handleButtonClick}>
+          {reading} &#176;C          
+            <img src={arrow} alt="click-arrow" className="arrow-icon"  />
       </button>
+      </div>
     )
   }
 }
