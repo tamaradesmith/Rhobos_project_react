@@ -18,13 +18,13 @@ function ControllerDetail(props) {
       {includeLed === true ? (
 
         <td id="shows" className="radio-show">
-            {shows.map(show => (
-              <div>
+          {shows.map(show => (
+            <div className="check-div">
+              <input type="radio" key={show.id} value={show.id} name="ledshow" onChange={handleChange} className="check" />
               <label>{show.name}</label>
-                <input type="radio" key={show.id} value={show.id} name="ledshow" onChange={handleChange} />
-</div>
-            ))}
-            
+            </div>
+          ))}
+
         </td>
 
       ) : (null)}

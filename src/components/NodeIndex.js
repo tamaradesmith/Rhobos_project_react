@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Device, Node } from "../js/requests"
-import '../styles/node.css'
 
 
 class NodeIndex extends React.Component {

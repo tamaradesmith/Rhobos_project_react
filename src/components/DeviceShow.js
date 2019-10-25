@@ -2,7 +2,6 @@ import React from "react";
 import { Device, Controller } from "../js/requests"
 import SensorDetail from "./SensorDetail";
 import ControllerDetail from "./ControllerDetail"
-import '../styles/device.scss'
 
 
 
@@ -32,7 +31,6 @@ class DeviceShow extends React.Component {
       }
     })
   })
-
 
 
   backtoNode = (() => {
@@ -82,7 +80,7 @@ class DeviceShow extends React.Component {
     return (
       <main className="DeviceDetail card">
 
-        <h3 className="header">Device: {device.name.toUpperCase()} </h3>
+        <h3 className="header">Device: {device.name} </h3>
         <div className="div-space" />
 
         <button onClick={this.backtoNode} className="link-button">Back to Node </button>
@@ -122,7 +120,7 @@ class DeviceShow extends React.Component {
                   <th>Controllers</th>
                   <th>Type</th>
                   {led === true ? (
-                    <th>Default Show</th>
+                    <th>Default Show - click to select change default</th>
 
                   ) : (null)}
                 </tr>

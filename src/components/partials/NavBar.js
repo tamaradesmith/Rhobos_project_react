@@ -8,7 +8,7 @@ function NavBar(props) {
       <div className="nav-label">
         <NavLink to="/nodes" className="nav-text" >
           <figure className="nav-icon" >
-            <img src={td3dicon} alt="TD3D Icon" className="nav-icon" />
+            <img src={td3dicon} alt="Rhobos Icon" className="nav-icon" />
           </figure>
         </NavLink>
       </div>

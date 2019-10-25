@@ -2,7 +2,6 @@ import React from "react"
 import Chart from './partials/Chart'
 import { Controller, Node } from "../js/requests"
 import ReadingDetail from "./partials/ReadingDetail";
-import '../styles/dashboard.scss'
 import Button from "./partials/Button";
 import { format } from 'date-fns'
 
@@ -102,13 +101,13 @@ class Dashboard extends React.Component {
 
       <main className="card">
         <h3 className="header">
-          Dashboard: {node.toUpperCase()}
+          Dashboard: {node}
         </h3>
         <button onClick={this.backtoNode} className="link-button">Back to Node </button>
         <div className="grid-dashboard">
 
           <div className="corner-grid"></div>
-          {sensors.map((sensor, index) => (
+          {sensors.map((sensor) => (
             <div key={sensor.id}>
               <ReadingDetail  sensor={sensor}  />
             </div>

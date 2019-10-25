@@ -1,6 +1,6 @@
 import React from "react";
 import { Sensor } from "../../js/requests";
-import arrow from "../../images/arrow-left-solid.svg"
+import arrow from "../../images/click.png"
 
 class ReadingDetail extends React.Component {
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Node } from "../js/requests"
-import '../styles/node.css'
 
 
 class NodeShow extends React.Component {
@@ -48,8 +47,8 @@ class NodeShow extends React.Component {
       <main className="NodeShow">
 
         <div key={node.id} className="NodeIndex node-card">
-          <h3 className="header"> Node: {node.name.toUpperCase()} </h3>
-          <Link to={`/node/${node.id}/dashboard`} className="dashboard-link"> Dashboard </Link>
+          <h3 className="header"> Node: {node.name} </h3>
+          <Link to={`/node/${node.id}/dashboard`} className="link-button">See Dashboard </Link>
 
           <table className="device-table table-width">
             <tbody>
