@@ -42,8 +42,8 @@ const Node = {
     const res = await fetch(`${BASE_URL}/nodes/${node_id}/controllers/state`, {});
     return res.json();
   },
-  async getReadingsSenosrsOnNode(node_id) {
-    const res = await fetch(`${BASE_URL}/nodes/${node_id}/sensors/readings`, {});
+  async getReadingsSenosrsOnNode(node_id, number) {
+    const res = await fetch(`${BASE_URL}/nodes/${node_id}/sensors/readings/${number}`, {});
     return res.json();
   },
 }

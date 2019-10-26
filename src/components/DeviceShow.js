@@ -2,7 +2,7 @@ import React from "react";
 import { Device, Controller } from "../js/requests"
 import SensorDetail from "./SensorDetail";
 import ControllerDetail from "./ControllerDetail"
-
+import backArrow from "../images/backarrow.png"
 
 
 
@@ -49,7 +49,7 @@ class DeviceShow extends React.Component {
     Device.getSensors(this.props.match.params.id).then(
       sensors => {
         sensors.map(sensor => {
-          sensor.name = sensor.name[0].toUpperCase() + sensor.name.slice(1)
+       return sensor.name = sensor.name[0].toUpperCase() + sensor.name.slice(1)
         })
         this.setState({
           sensors: [...sensors],
@@ -60,7 +60,7 @@ class DeviceShow extends React.Component {
     Device.getControllers(this.props.match.params.id).then(
       controllers => {
         controllers.map(controller => {
-          controller.name = controller.name[0].toUpperCase() + controller.name.slice(1)
+         return controller.name = controller.name[0].toUpperCase() + controller.name.slice(1)
         })
         this.setState({
           controllers: [...controllers],
@@ -79,11 +79,13 @@ class DeviceShow extends React.Component {
 
     return (
       <main className="DeviceDetail card">
-
-        <h3 className="header">Device: {device.name} </h3>
         <div className="div-space" />
+        <h3 className="header">Device:{device.name} </h3>
+        <div className="div-space-small" />
 
-        <button onClick={this.backtoNode} className="link-button">Back to Node </button>
+        <button onClick={this.backtoNode} className="link-button"> <img src={backArrow} alt="Back Arrow" className="arrow-icon" />  <p className="text-center">
+          Node
+          </p></button>
 
 
         {sensors.length !== 0 ? (
@@ -120,7 +122,7 @@ class DeviceShow extends React.Component {
                   <th>Controllers</th>
                   <th>Type</th>
                   {led === true ? (
-                    <th>Default Show - click to select change default</th>
+                    <th>Default Show - <small> click to select change default</small></th>
 
                   ) : (null)}
                 </tr>

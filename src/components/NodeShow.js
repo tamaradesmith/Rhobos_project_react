@@ -26,7 +26,7 @@ class NodeShow extends React.Component {
     Node.allDevicesOnNode(this.props.match.params.id)
       .then(devices => {
         devices.map(device => {
-          device.name = device.name[0].toUpperCase() + device.name.slice(1)
+        return  device.name = device.name[0].toUpperCase() + device.name.slice(1)
         })
         this.setState({
           devices: [...devices],
@@ -45,10 +45,11 @@ class NodeShow extends React.Component {
     }
     return (
       <main className="NodeShow">
-
+        <div className="div-space-small" />
         <div key={node.id} className="NodeIndex node-card">
-          <h3 className="header"> Node: {node.name} </h3>
-          <Link to={`/node/${node.id}/dashboard`} className="link-button">See Dashboard </Link>
+          <h3 className="header"> Node:{node.name} </h3>
+          <div className="div-space-small" />
+          <Link to={`/node/${node.id}/dashboard`} className="link-button link-text">See Dashboard </Link>
 
           <table className="device-table table-width">
             <tbody>
