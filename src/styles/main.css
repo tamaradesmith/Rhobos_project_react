@@ -1,5 +1,6 @@
 @import url(reset.css);
 @import url(font.css);
+@import url("https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap");
 
 :root {
   --primary-colour: #3c7509;
@@ -22,7 +23,6 @@ html {
 }
 
 body {
-  height: 100%;
   font-family: var(--main-font);
   color: var(--colour);
   background-image: linear-gradient(
@@ -35,19 +35,14 @@ body {
   background-attachment: fixed;
   font-weight: 400;
 }
-h1 {
-  /* text-align: center; */
-  /* padding: 0.2em; */
-}
+
 h2 {
   font-size: 1.6em;
   font-weight: 500;
 }
 h3 {
-  font-size: 2.5em;
-  /* padding: 0.25em 0; */
-  /* text-align: center; */
-  font-weight: 500;
+  font-size: 2.75em;
+  font-weight: 600;
 }
 h4 {
   font-size: 1.1em;
@@ -66,31 +61,50 @@ a:hover {
 .NavBar {
   display: flex;
   flex-direction: row;
-  align-items: center;
   padding-left: 1em;
   margin-top: 0.5em;
 }
 .nav-icon {
-  max-height: 75px;
-  vertical-align: center;
+  max-height: 73px;
 }
 .nav-label {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
-  align-items: center;
+  /* align-items: center; */
+  flex: 1;
 }
 .nav-text {
-  font-size: 2.8em;
-  /* font-family: "Merienda", cursive; */
-  font-family: "Fjalla One", sans-serif;
-  font-weight: 700;
-  /* -webkit-text-fill-color: black;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: white; */
+  font-size: 3.2em;
+  font-family: "Alfa Slab One", cursive;
+  font-weight: 500;
   padding: 0 0.25em;
 }
+.nav-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.nav-tag {
+  font-size: 1.3em;
+  font-weight: 500;
+  padding: 0 0.75em;
+}
+.nav-link{
+  text-align: right;
+  font-size: 1.8em;
+  font-weight: 500;
+  align-self: center;
+  justify-self: end;
+  padding-right: 1em;
+}
 
+/* cards */
+.catagory-header {
+  margin-top: 2em;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
 .card {
   display: flex;
   flex-direction: column;
@@ -111,12 +125,12 @@ a:hover {
   text-transform: uppercase;
   color: aliceblue;
 }
-.header:hover{
+.header:hover {
   color: black;
 }
-.label-node{
-font-size: 1.5em;
-padding-top: 1em;
+.label-node {
+  font-size: 1.5em;
+  padding-top: 1em;
 }
 
 .image {
@@ -134,7 +148,7 @@ padding-top: 1em;
 .link-button:hover {
   color: white;
 }
-.link-text{
+.link-text {
   font-size: 1.3em;
 }
 .title {
@@ -153,9 +167,7 @@ padding-top: 1em;
 .node-card {
   display: flex;
   flex-direction: column;
-  padding: 0.5em 0.75em 1em;
-  margin: 1em 0;
- 
+  padding: 0.5em 0.75em 0em;
 }
 .node-header {
   text-align: center;
@@ -165,7 +177,7 @@ padding-top: 1em;
   grid-template-columns: 150px auto;
 }
 .node-body {
-  padding: 0.5em;
+  padding: 0.25em 0.5em 0.5em;
   font-size: 1.1em;
   text-decoration: none;
 }
@@ -182,7 +194,6 @@ padding-top: 1em;
   grid-row: 2/7;
   background: #c0c0c0;
   border-radius: 1em;
-  /* border: 3px  var(--primary-colour); */
   box-shadow: 0px 0px 4px 4px var(--primary-colour);
 }
 .reading-div {
@@ -280,7 +291,7 @@ padding-top: 1em;
 }
 .radio-name {
   margin-left: 0.25em;
-    font-weight: 500;
+  font-weight: 500;
   font-size: 1.1em;
 }
 
@@ -389,26 +400,27 @@ input[type="radio"]:checked ~ label {
 
 .Home {
   display: grid;
-  grid-template-columns: 40% 45%  auto;
+  grid-template-columns: 40% 45% auto;
   grid-template-rows: 70px 400px 200px auto;
 }
 .home-background {
   background-image: url("../images/circult.png");
   background-repeat: no-repeat;
-  margin-top: -5em;
+  margin-top: -19em;
   background-size: 100%;
-  height: 100vh;
+  height: 112.5vh;
   grid-column: 1/5;
   grid-row: 1/5;
+  z-index: -1;
 }
-.title-grid{
+.title-grid {
   grid-column: 2/3;
   grid-row: 2/3;
 }
 .home-header {
   font-size: 3.5em;
   font-weight: 700;
-  color: aliceblue;;
+  color: aliceblue;
 }
 .node-link {
   grid-row: 3/4;
@@ -416,6 +428,6 @@ input[type="radio"]:checked ~ label {
   justify-self: center;
   font-size: 1.5em;
 }
-.tag-line{
-  padding-top: 1.5em ;
+.tag-line {
+  padding-top: 1.5em;
 }

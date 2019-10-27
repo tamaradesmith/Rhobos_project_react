@@ -44,14 +44,19 @@ class ReadingDetail extends React.Component {
     return (
       <div>
 
-      {(sensor.type === "temperature") ? (
-        <p className="toggle-labels">{sensor.device} </p>
-      ):(null)}
+        {(sensor.type === "temperature") ? (
+          <p className="toggle-labels">{sensor.device} </p>
+        ) : (null)}
         <p className="reading-labels">{sensor.name} </p>
-      <button className="reading-div reading-button" onClick={this.handleButtonClick}>
-          {reading} &#176;C          
-            <img src={arrow} alt="click-arrow" className="arrow-icon"  />
-      </button>
+        <button className="reading-div reading-button" onClick={this.handleButtonClick}>
+          {reading}
+          {sensor.type === "temperature" ? (
+            <>
+              &#176;C
+            </>
+          ) : (null)}
+          <img src={arrow} alt="click-arrow" className="arrow-icon" />
+        </button>
       </div>
     )
   }

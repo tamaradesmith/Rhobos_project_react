@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Device, Node } from "../js/requests"
 
-
 class NodeIndex extends React.Component {
 
   state = {
@@ -38,45 +37,28 @@ class NodeIndex extends React.Component {
       return "loading"
     }
     return (
-      <main className="NodeIndex">
-        <>
+      <main className="NodeIndex card">
+        <div className="title-grid">
+
+          <h1 className="home-header">Environment & Atmosphere Control Technology</h1>
+          <div className="tag-line">
+
+          </div>
+        </div>
+        <div className="home-background" />
+      
+        <h4 className="catagory-header">Nodes</h4>
           {nodes.map((node) => (
-            <div key={node.id} className="node-card">
+            <div key={node.id} >
               <Link to={`/nodes/${node.id}`} >
                 <h3 className="header"> 
-                Node:{node.name} </h3>
+         {node.name} </h3>
               </Link>
               <p className="node-body">  {node.description} </p>
-              <div className="div-space" />
-             
-
-                <table className="device-table">
-                  <tbody>
-
-                    <tr>
-                      <th>Device</th>
-                      <th>Description</th>
-                    </tr>
-
-                    {devices.map(device => (
-                      (device.node_id === parseFloat(node.id) ? (
-                        <tr key={device.id} >
-
-
-                          <td> {device.name} </td>
-                          <td> {device.description} </td>
-
-                        </tr>
-                      ) : (null))
-                    ))}
-
-                  </tbody>
-                </table>
-
               </div>
      
           ))}
-        </>
+  
       </main>
     )
   }

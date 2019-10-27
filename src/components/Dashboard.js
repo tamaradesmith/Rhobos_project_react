@@ -17,6 +17,10 @@ function convertToChartData(allReadings) {
   const temp = {}
   allReadings.forEach(readings => {
     readings.forEach(reading => {
+      if (reading.value === 0){
+        reading.value = 1;
+        // return
+      }
       const data = temp[formateTime(reading.time)] || { time: format(new Date(reading.time), "H:m:ss"), date: `${format(new Date(reading.time), "MMM d")}` }
       data[reading.sensor] = reading.value;
       temp[formateTime(reading.time)] = { ...data }
@@ -128,11 +132,12 @@ class Dashboard extends React.Component {
     return (
 
       <main className="card">
-        <div className="div-space-small" />
+        <div className="catagory-header">
+          Dashboard
+        </div>
 
         <h3 className="header">
-          Dashboard:
-           {node}
+             {node}
         </h3>
         <div className="div-space" />
         <div className="grid-dashboard">
@@ -158,6 +163,7 @@ class Dashboard extends React.Component {
           ))}
 
           <div className="chart-div ">
+
             <Chart readings={this.state.readings} valueKeys={this.state.valueKeys} interval={interval} />
           </div>
           <div className="period-div">
@@ -165,18 +171,18 @@ class Dashboard extends React.Component {
               <h4 className="period-label "> Change Chart Periods: </h4>
 
               {times.map((time, index) => (
-                <React.Fragment>
-                  {time.period === period ? (
-                    <div key={index} className="period-radio" >
-                      <input type="radio" value={time.number} name="times" className="check" onClick={this.handleChange} checked={true} />
-                      <label className="radio-name">{time.period}</label>
+                <React.Fragment key={index}>
+                  {/* {time.period === period ? ( */}
+                    <div className="period-radio" >
+                    <input type="radio" value={time.number} name="times" className="check" onChange={this.handleChange} checked={time.period === period ? true : false} />
+                    <label className="radio-name"> {time.period}</label>
                     </div>
-                  ) : (
+                  {/* ) : (
                       <div key={index} className="period-radio" >
                         <input type="radio" value={time.number} name="times" className="check" onClick={this.handleChange} checked={false} />
                         <label className="radio-name">{time.period}</label>
                       </div>
-                    )}
+                    )} */}
                 </React.Fragment>
               ))}
             </div>

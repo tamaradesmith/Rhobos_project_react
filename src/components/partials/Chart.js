@@ -1,12 +1,11 @@
 import React from 'react';
 import { LineChart, Line, YAxis, XAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid } from 'recharts';
-// import chroma from "chroma-js"
 
 
 function Chart(props) {
 
   if (!props.readings) {
-    return "Leading"
+    return "Loading"
   }
   // const colours = chroma.scale(['#550000','#005500', '#000055'])
   //   .mode('lch').colors(props.valueKeys.length)
@@ -17,10 +16,10 @@ function Chart(props) {
       <ResponsiveContainer width="100%" height={600} className="chart-div" >
 
         <LineChart data={props.readings} margin={{ top: 35, right: 30, left: 65, bottom: 45 }}>
-
           {props.valueKeys.map((key, index) => (
 
             <Line connectNulls type='monotone' dataKey={key} stroke={colours[index]} strokeWidth={3} key={index}  dot={false} />
+
           ))}
           <CartesianGrid stroke="#88A09E" strokeDasharray="10 10" vertical={false} />
 
@@ -28,7 +27,7 @@ function Chart(props) {
 
           <XAxis type="category" allowDuplicatedCategories={false} label={{ angle: 0, position: 'bottom' }} interval={24} dataKey="date" tickLine={false} tick={{ fontSize: 30, angle: 0 }} xAxisId={1} />
 
-          <YAxis scale="log" domain={[dataMin =>(dataMin/2) , dataMax => (dataMax * 2)]} />
+          <YAxis scale="log" domain={[dataMin =>(dataMin/2 ) , dataMax => (dataMax * 1.5)]}  />
 
           <Legend verticalAlign="bottom" height={36} iconSize={30} wrapperStyle={{ bottom: 20 }}   />
 

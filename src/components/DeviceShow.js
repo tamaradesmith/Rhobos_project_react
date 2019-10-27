@@ -79,8 +79,10 @@ class DeviceShow extends React.Component {
 
     return (
       <main className="DeviceDetail card">
-        <div className="div-space" />
-        <h3 className="header">Device:{device.name} </h3>
+
+        <div className="catagory-header">device</div>
+        
+        <h3 className="header"> {device.name} </h3>
         <div className="div-space-small" />
 
         <button onClick={this.backtoNode} className="link-button"> <img src={backArrow} alt="Back Arrow" className="arrow-icon" />  <p className="text-center">

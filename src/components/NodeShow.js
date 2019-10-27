@@ -45,9 +45,9 @@ class NodeShow extends React.Component {
     }
     return (
       <main className="NodeShow">
-        <div className="div-space-small" />
-        <div key={node.id} className="NodeIndex node-card">
-          <h3 className="header"> Node:{node.name} </h3>
+        <div key={node.id} className="node-card">
+        <div className="catagory-header"> node </div>
+          <h3 className="header">{node.name} </h3>
           <div className="div-space-small" />
           <Link to={`/node/${node.id}/dashboard`} className="link-button link-text">See Dashboard </Link>
 
