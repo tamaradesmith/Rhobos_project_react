@@ -1,7 +1,6 @@
 const BASE_URL = 'http://localhost:4000';
 
 const Device = {
-  //  from one node
   async one(device_id) {
     const res = await fetch(`${BASE_URL}/device/${device_id}`, {});
     return res.json();

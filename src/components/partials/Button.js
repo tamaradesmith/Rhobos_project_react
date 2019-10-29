@@ -23,20 +23,20 @@ function Button(props) {
         {controller.name}
       </p>
       <button className="controller-div">
-      {state==="On" ? (
+        {state === "On" ? (
 
-      <label className="switch">
+          <label className="switch">
             <input type="checkbox" onChange={handleButtonClick} checked />
-        <span className="slider round"> </span>
-      </label>
-      ) : (
+            <span className="slider round"> </span>
+          </label>
+        ) : (
             <label className="switch">
               <input type="checkbox" onChange={handleButtonClick} />
               <span className="slider round"> </span>
             </label>
-      )}
-    </button>
+          )}
+      </button>
     </div>
   )
 }
-export default Button
+export default Button;

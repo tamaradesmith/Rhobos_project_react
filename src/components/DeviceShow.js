@@ -21,13 +21,15 @@ class DeviceShow extends React.Component {
     this.state.controllers.forEach(controller => {
       if (controller.type.toLowerCase() === "led") {
         Controller.getLightShows(controller.id)
-          .then(
-            shows => {
-              this.setState({
-                lightShows: [...shows],
-                led: true
-              })
+          .then(shows => {
+            shows.map(show => {
+              return show.name = show.name[0].toUpperCase() + show.name.slice(1);
             })
+            this.setState({
+              lightShows: [...shows],
+              led: true
+            })
+          })
       }
     })
   })
@@ -49,7 +51,7 @@ class DeviceShow extends React.Component {
     Device.getSensors(this.props.match.params.id).then(
       sensors => {
         sensors.map(sensor => {
-       return sensor.name = sensor.name[0].toUpperCase() + sensor.name.slice(1)
+          return sensor.name = sensor.name[0].toUpperCase() + sensor.name.slice(1)
         })
         this.setState({
           sensors: [...sensors],
@@ -60,7 +62,7 @@ class DeviceShow extends React.Component {
     Device.getControllers(this.props.match.params.id).then(
       controllers => {
         controllers.map(controller => {
-         return controller.name = controller.name[0].toUpperCase() + controller.name.slice(1)
+          return controller.name = controller.name[0].toUpperCase() + controller.name.slice(1)
         })
         this.setState({
           controllers: [...controllers],
@@ -81,7 +83,7 @@ class DeviceShow extends React.Component {
       <main className="DeviceDetail card">
 
         <div className="catagory-header">device</div>
-        
+
         <h3 className="header"> {device.name} </h3>
         <div className="div-space-small" />
 
@@ -124,8 +126,7 @@ class DeviceShow extends React.Component {
                   <th>Controllers</th>
                   <th>Type</th>
                   {led === true ? (
-                    <th>Default Show - <small> click to select change default</small></th>
-
+                    <th>Set Show </th>
                   ) : (null)}
                 </tr>
 

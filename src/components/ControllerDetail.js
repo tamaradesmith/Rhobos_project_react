@@ -22,7 +22,7 @@ function ControllerDetail(props) {
 
   useEffect(() => {
     getdefaultshow()
-  }, [shows])
+  }, [shows]);
 
   return (
     <tr className="ControllerDetails" key={controller.id}>
@@ -31,21 +31,25 @@ function ControllerDetail(props) {
 
 
       {includeLed === true ? (
-
         <td id="shows" className="radio-show">
+
           {shows.map((show, index) => (
 
             <React.Fragment key={index}>
-              <div className="check-div" >
-                <input type="radio" key={show.id} value={show.id} name="ledshow" onChange={handleChange} className="check" checked={check === show.id} />
-                <label className="radio-name">{show.name}</label>
-              </div>
-          
+              <>
+                <label className="radio-name-table check-box">
+
+                  <input type="radio" key={show.id} value={show.id} name="ledshow" onChange={handleChange} className="check" checked={check === show.id} />
+
+                  <div className="check-circle inner "></div>
+
+                  <p className="check-text">{show.name}</p>
+
+                </label>
+              </>
             </React.Fragment>
           ))}
-
         </td>
-
       ) : (null)}
 
     </tr>

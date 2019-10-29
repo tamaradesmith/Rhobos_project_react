@@ -17,7 +17,7 @@ function convertToChartData(allReadings) {
   const temp = {}
   allReadings.forEach(readings => {
     readings.forEach(reading => {
-      if (reading.value === 0){
+      if (reading.value === 0) {
         reading.value = 1;
         // return
       }
@@ -42,8 +42,8 @@ class Dashboard extends React.Component {
     valueKeys: [],
     controllersState: [],
     lastReadings: [],
-    times: [{ period: "day", number: 24 }, { period: "week", number: 24 * 7 }, { period: "month", number: 24 * 7 * 30 }],
-    period: "day",
+    times: [{ period: "Day", number: 24 }, { period: "Week", number: 24 * 7 }, { period: "Month", number: 24 * 7 * 30 }],
+    period: "Day",
     interval: 4,
     checked: true,
     isLoading: true,
@@ -54,15 +54,16 @@ class Dashboard extends React.Component {
   })
 
   handleChange = ((event) => {
+    
     const number = event.target.value;
     let interval = 4
-    let period = "day"
+    let period = "Day"
     if (number >= 4 * 7 * 30) {
       interval = (number / (24 * 3))
-      period = "month"
+      period = "Month"
     } else if (number >= 4 * 7) {
       interval = (number / 7);
-      period = "week"
+      period = "Week"
     }
     Node.getReadingsSenosrsOnNode(this.props.match.params.id, number)
       .then(
@@ -132,26 +133,26 @@ class Dashboard extends React.Component {
     return (
 
       <main className="card">
+   
         <div className="catagory-header">
           Dashboard
         </div>
 
         <h3 className="header">
-             {node}
+          {node}
         </h3>
         <div className="div-space" />
         <div className="grid-dashboard">
 
-          <button onClick={this.backtoNode} className="link-button corner-grid" >
+          <button onClick={this.backtoNode} className="link-button corner-grid deck" >
 
             <img src={backArrow} alt="Back Arrow" className="arrow-icon" />  <p className="text-center">
               Node
           </p>
           </button>
-          {/* 
-          <div className="corner-grid"></div> */}
+
           {sensors.map((sensor) => (
-            <div key={sensor.id}>
+            <div key={sensor.id} className="reading">
               <ReadingDetail sensor={sensor} />
             </div>
           ))}
@@ -168,21 +169,19 @@ class Dashboard extends React.Component {
           </div>
           <div className="period-div">
             <div className="chart-period" >
-              <h4 className="period-label "> Change Chart Periods: </h4>
+              <h4 className="period-label "> Chart periods: </h4>
 
               {times.map((time, index) => (
                 <React.Fragment key={index}>
-                  {/* {time.period === period ? ( */}
-                    <div className="period-radio" >
+                  <label className="radio-name chart-check-box">
+                  
                     <input type="radio" value={time.number} name="times" className="check" onChange={this.handleChange} checked={time.period === period ? true : false} />
-                    <label className="radio-name"> {time.period}</label>
-                    </div>
-                  {/* ) : (
-                      <div key={index} className="period-radio" >
-                        <input type="radio" value={time.number} name="times" className="check" onClick={this.handleChange} checked={false} />
-                        <label className="radio-name">{time.period}</label>
-                      </div>
-                    )} */}
+                    <div className="check-circle inner"></div>
+
+                    <p className="check-text">{time.period} </p>
+                    
+                    </label>
+                  
                 </React.Fragment>
               ))}
             </div>

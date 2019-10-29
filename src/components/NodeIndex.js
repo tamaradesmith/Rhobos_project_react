@@ -38,27 +38,38 @@ class NodeIndex extends React.Component {
     }
     return (
       <main className="NodeIndex card">
+
         <div className="title-grid">
 
           <h1 className="home-header">Environment & Atmosphere Control Technology</h1>
-          <div className="tag-line">
-
-          </div>
+          {/* <div className="tag-line">
+          </div> */}
         </div>
+
         <div className="home-background" />
-      
+
         <h4 className="catagory-header">Nodes</h4>
-          {nodes.map((node) => (
-            <div key={node.id} >
-              <Link to={`/nodes/${node.id}`} >
-                <h3 className="header"> 
-         {node.name} </h3>
-              </Link>
-              <p className="node-body">  {node.description} </p>
-              </div>
-     
-          ))}
-  
+        {nodes.map((node) => (
+          <div key={node.id} >
+
+          {/* desktop link */}
+            <Link to={`/nodes/${node.id}`} >
+              <h3 className="header header-link deck">
+                {node.name} </h3>
+            </Link>
+
+            {/* model link */}
+            <Link to={`/node/${node.id}/dashboard`} >
+              <h3 className="header header-link model">
+                {node.name} </h3>
+            </Link>
+
+
+            <p className="node-body">  {node.description} </p>
+          </div>
+
+        ))}
+
       </main>
     )
   }

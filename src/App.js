@@ -7,7 +7,6 @@ import NavBar from './components/partials/NavBar';
 import DeviceShow from './components/DeviceShow';
 import Dashboard from './components/Dashboard';
 import NodeShow from './components/NodeShow';
-import Home from './components/Home'
 
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
       <NavBar />
 
       <Switch>
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={NodeIndex} />
         <Route path="/nodes" exact component={NodeIndex} />
         <Route path="/nodes/:id" exact component={NodeShow} />
         <Route path="/devices/:id"

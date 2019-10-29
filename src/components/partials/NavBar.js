@@ -21,9 +21,9 @@ function NavBar(props) {
           {/* <p className="nav-tag"> Environment & Atmosphere Control Technology</p> */}
         </div>
       </div>
-      <NavLink to="/nodes"  >
-        <p className="nav-link"> nodes </p>
-      </NavLink>
+        {/* <NavLink to="/nodes"  >
+          <p className="nav-link"> Nodes </p>
+        </NavLink> */}
     </main>
 
   )
